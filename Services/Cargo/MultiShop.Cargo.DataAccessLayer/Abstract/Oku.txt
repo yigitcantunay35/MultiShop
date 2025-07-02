@@ -1,0 +1,59 @@
+﻿Ne Yaptık?
+Bu kodda bir IGenericDal<T> adında generic bir arayüz (interface) tanımladık.
+
+Amaç Nedir?
+Herhangi bir entity (Product, Order, Customer vb.) için temel CRUD işlemlerini aynı arayüzle yönetebilmek.
+
+Yani şunu diyorsun:
+
+"Ben bir Product, CargoCompany, Customer, ShippingDetail ya da her neyse onun için Insert, Update, Delete, GetById, GetAll gibi işlemleri ortak bir yapı üzerinden yapacağım."
+
+Kodu Satır Satır Açalım:
+
+-public interface IGenericDal<T> where T : class
+Bu bir generic interface.
+
+T bir tip parametresi: Product, Customer, Order, vs.
+
+-where T : class: T sadece referans tip (class) olabilir, int gibi değer tipi olamaz.
+
+CRUD Method Tanımları:
+
+void Insert (T entity);
+Yeni bir kayıt eklemek için kullanılır.
+
+csharp
+Kopyala
+Düzenle
+-void Update (T entity);
+Var olan bir kaydı güncellemek için.
+
+
+-void Delete (int id);
+id bilgisine göre kayıt silme işlemi. (Dikkat: T değil int alıyor)
+
+
+-T GetById (int id);
+Belirli id'ye sahip bir kaydı getirir.
+
+
+-List<T> GetAll();
+Bütün kayıtları liste halinde getirir.
+
+Ne İşe Yarar Bu?
+Bu interface şunu sağlar:
+Her entity için ayrı ayrı InsertProduct, UpdateProduct gibi sınıflar yazmana gerek kalmaz.
+Bunun yerine:
+
+-public class GenericRepository<T> : IGenericDal<T> where T : class
+şeklinde bir class yazarsın, tüm tabloları aynı yerden yönetirsin.
+
+Örnek Kullanım:
+
+public class CargoCompanyRepository : IGenericDal<CargoCompany>
+{
+    // Bu sınıf, IGenericDal'daki metodları CargoCompany için uygulayacak
+}
+📌 Sonuç
+ bu IGenericDal<T> tam anlamıyla Repository Pattern’in temel taşıdır.
+Bu arayüz sayesinde her veri modeli için ortak bir sözleşme kurarız. Kod tekrarından kurtuluruz ve test edilebilirliği artırırız.

@@ -1,0 +1,67 @@
+﻿Ne Yapıldı?
+
+public class EfCargoCompanyDal : GenericRepoSitory<CargoCompany>, ICargoCompanyDal
+Bu satırla şunu diyorsunuz:
+"Ben CargoCompany isimli entity için hazır generic repository işlemlerini kullanacağım (Insert, Update, Delete, vs.), ayrıca ICargoCompanyDal arayüzündeki özel metodları da buraya yazabilirim."
+
+Amaç Nedir?
+✔ GenericRepository<T>'de tüm genel CRUD işlemleri zaten tanımlı.
+Ama bazı entity’ler (örneğin CargoCompany) özel sorgular ister.
+Mesela:
+
+
+List<CargoCompany> GetCompaniesByCity(int cityId);
+İşte bu gibi durumlarda, EfCargoCompanyDal içine özel metotlar ekleyebilirsin.
+
+Katmanların Rolü (Görsele göre açıklama):
+Abstract/ICargoCompanyDal.cs
+➡ Interface tanımı: hangi metodları uygulayacağını belirtiyor (sözleşme)
+
+Repositories/GenericRepository.cs
+➡ Tüm Entity’ler için ortak CRUD metodlarını içeriyor (generic yapı)
+
+EF/EfCargoCompanyDal.cs
+➡ Hem GenericRepository'yi miras alıyor,
+➡ Hem de ICargoCompanyDal'ı implemente ediyor
+➡ Gerekirse özel sorgular burada yazılıyor
+
+EfCargoCompanyDal’ın Görevi Nedir?
+Katman	Rol
+GenericRepository<T>	Ortak CRUD işlemleri sağlar
+EfCargoCompanyDal	CargoCompany'e özel işlemleri tanımlar
+ICargoCompanyDal	EfCargoCompanyDal'ın uygulaması gereken interface
+
+Yani bu sınıf:
+
+EF Core ile doğrudan çalışır (CargoContext)
+
+CargoCompany tablosuna özel işlemleri barındırabilir
+
+Ama aynı zamanda CRUD işlemleri için GenericRepoSitory'den hazır metotları kullanır
+
+Örnek Senaryo:
+
+// Business Layer'dan örnek kullanım
+public class CargoCompanyManager
+{
+    private readonly ICargoCompanyDal _cargoCompanyDal;
+
+    public CargoCompanyManager(ICargoCompanyDal cargoCompanyDal)
+    {
+        _cargoCompanyDal = cargoCompanyDal;
+    }
+
+    public List<CargoCompany> GetAllCompanies()
+    {
+        return _cargoCompanyDal.GetAll(); // GenericRepoSitory’den geliyor
+    }
+}
+Özetle:
+EfCargoCompanyDal, CargoCompany için:
+
+EF Core bağlantısı sağlar
+
+Tüm CRUD işlemlerini generic olarak alır
+
+Gerekirse kendine özgü işlemler de ekleyebilir
+

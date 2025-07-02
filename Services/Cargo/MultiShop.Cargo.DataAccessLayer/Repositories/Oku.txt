@@ -1,0 +1,24 @@
+﻿Dosya: GenericRepository<T>
+Bu sınıf ne işe yarıyor?
+Tüm entity sınıfları için (CargoCompany, ShippingDetail, City vs.)
+✔ Ekleme
+✔ Güncelleme
+✔ Silme
+✔ Listeleme
+✔ Id’ye göre getirme
+işlemlerini tek bir yerden yönetmeye yarıyor.
+
+
+ Kısaca Ne Yaptık?
+Tek bir sınıfla, tüm veri tablolarını yönetecek ortak bir repository yazdınız.
+Ve bu sınıfı kullanmak için tek yapmanız gereken, ilgili entity için GenericRepository<T> nesnesi oluşturmak.
+
+ Örnek Kullanım:
+
+-IGenericDal<CargoCompany> cargoRepo = new GenericRepoSitory<CargoCompany>(context);
+-var allCompanies = cargoRepo.GetAll();
+
+ Bu yapının avantajı ne?
+Kod tekrarını sıfırlar
+Yeni bir tablo eklediğinde ayrı repository yazmana gerek kalmaz
+Test ve bakım çok kolay olur

@@ -1,0 +1,1 @@
+﻿Burada sınıflara CRUD içerisindeki Okuma hariç hepsini burada tutuyoruz çünkü bunlar Command olduğu için.

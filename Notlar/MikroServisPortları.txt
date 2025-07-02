@@ -1,0 +1,20 @@
+﻿MultiShop.Catalog => https://localhost:7070
+MultiShop.Discount => https://localhost:7071
+MultiShop.Order.WebApi => https://localhost:7072
+MultiShop.Cargo.WebAPI => https://localhost:7073
+
+
+
+
+------------
+https://localhost:7070/api/Categories
+https://localhost:7070/api/Product
+https://localhost:7070/api/ProductDetail
+https://localhost:7070/api/ProductImageServices
+-------
+https://localhost:7071/api/Discounts
+---
+https://localhost:7072/api/Addresses
+https://localhost:7072/api/OrderDetail
+https://localhost:7072/api/Orderings
+--------
