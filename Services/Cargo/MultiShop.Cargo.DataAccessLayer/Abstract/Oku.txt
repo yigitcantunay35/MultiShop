@@ -22,9 +22,7 @@ CRUD Method Tanımları:
 void Insert (T entity);
 Yeni bir kayıt eklemek için kullanılır.
 
-csharp
-Kopyala
-Düzenle
+
 -void Update (T entity);
 Var olan bir kaydı güncellemek için.
 
@@ -54,6 +52,6 @@ public class CargoCompanyRepository : IGenericDal<CargoCompany>
 {
     // Bu sınıf, IGenericDal'daki metodları CargoCompany için uygulayacak
 }
-📌 Sonuç
+Sonuç
  bu IGenericDal<T> tam anlamıyla Repository Pattern’in temel taşıdır.
 Bu arayüz sayesinde her veri modeli için ortak bir sözleşme kurarız. Kod tekrarından kurtuluruz ve test edilebilirliği artırırız.

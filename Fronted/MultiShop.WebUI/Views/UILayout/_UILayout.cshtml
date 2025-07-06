@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Buraya Component Uygunlandı -->
+@await Component.InvokeAsync("_HeadUILayoutViewComponents")
+<body>
+    <!-- Topbar Start -->
+    <!-- Buraya Component Uygunlandı -->
+    @await Component.InvokeAsync("_TopbarUILayoutViewComponents")
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <!-- Buraya Component Uygunlandı -->
+    @await Component.InvokeAsync("_NavbarUILayoutViewComponents")
+    <!-- Navbar End -->
+    <!-- Breadcrumb Start -->
+    @RenderBody()
+    <!-- Burayla -->
+    <!-- Breadcrumb End -->
+    <!-- Contact Start -->
+    <!-- Contact End -->
+    <!-- Buraya kadar kestim. -->
+    <!-- Footer Start -->
+    @await Component.InvokeAsync("_FooterUILayoutViewComponents")
+    <!-- Footer End -->
+    <!-- Back to Top -->
+    @await Component.InvokeAsync("_ScriptUILayoutViewComponents")
+</body>
+
+</html>

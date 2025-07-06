@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">AnaSayfa</a>
+                <span class="breadcrumb-item active">Ürün Listesi</span>
+            </nav>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("_CarouselDefaultViewComponents")
+
+@await Component.InvokeAsync("_FeatureDefaultViewComponents")
+
+@await Component.InvokeAsync("_CategoriesDefaultViewComponents")
+
+@await Component.InvokeAsync("_FeatureProductsDefaultViewComponents")
+
+@await Component.InvokeAsync("_OfferDiscountDefaultViewComponents")
+
+@await Component.InvokeAsync("_VendorDefaultViewComponents")
